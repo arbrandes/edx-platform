@@ -1456,8 +1456,24 @@ def login_user(request, error=""):  # pylint: disable=too-many-statements,unused
         AUDIT_LOG.warning(u"Login failed - Account not active for user {0}, resending activation".format(username))
 
     reactivation_email_for_user(user)
-    not_activated_msg = _("Before you sign in, you need to activate your account. We have sent you an "
-                          "email message with instructions for activating your account.")
+    account_email = "<strong>{0}</strong>".format(user.email)
+    support_url = configuration_helpers.get_value(
+        'SUPPORT_SITE_LINK',
+        settings.SUPPORT_SITE_LINK
+    )
+    platform_name = configuration_helpers.get_value(
+        'PLATFORM_NAME',
+        settings.PLATFORM_NAME
+    )
+    support_link = _("<a href='{url}'>contact {platform} Support</a>").format(
+        url=support_url,
+        platform=platform_name
+    )
+    not_activated_msg_template = _('In order to sign in, you need to activate your account.<br /><br />'
+                                   'We just sent an activation link to {email}.  If you do not receive '
+                                   'an email, check your spam folders or {contact_us}')
+    not_activated_msg = not_activated_msg_template.format(email=account_email, contact_us=support_link)
+
     return JsonResponse({
         "success": False,
         "value": not_activated_msg,
