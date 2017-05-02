@@ -1,5 +1,10 @@
 define([
-    'domReady', 'js/views/import', 'jquery', 'gettext', 'jquery.fileupload', 'jquery.cookie'
+    'domReady',
+    '../views/import',
+    'jquery',
+    'gettext',
+    'jQuery-File-Upload/js/jquery.fileupload',
+    'jquery.cookie'
 ], function(domReady, Import, $, gettext) {
     'use strict';
 

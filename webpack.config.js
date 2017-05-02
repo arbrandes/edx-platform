@@ -12,7 +12,8 @@ var wpconfig = {
     context: __dirname,
 
     entry: {
-        CourseOutline: './openedx/features/course_experience/static/course_experience/js/CourseOutline.js'
+        CourseOutline: './openedx/features/course_experience/static/course_experience/js/CourseOutline.js',
+        Import: './cms/static/js/features/import/factories/import.js'
     },
 
     output: {
@@ -35,6 +36,10 @@ var wpconfig = {
         new BundleTracker({
             path: process.env.STATIC_ROOT,
             filename: 'webpack-stats.json'
+        }),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery'
         })
     ],
 
@@ -49,7 +54,19 @@ var wpconfig = {
     },
 
     resolve: {
-        extensions: ['.js', '.json']
+        extensions: ['.js', '.json'],
+        alias: {
+            'edx-ui-toolkit': 'edx-ui-toolkit/src/',
+            'jquery.ui': 'jQuery-File-Upload/js/vendor/jquery.ui.widget.js'
+        },
+        modules: [
+            'node_modules',
+            'common/static/js/vendor/'
+        ]
+    },
+
+    externals: {
+        gettext: 'gettext'
     },
 
     watchOptions: {

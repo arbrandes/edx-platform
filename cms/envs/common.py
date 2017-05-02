@@ -741,6 +741,15 @@ REQUIRE_EXCLUDE = ("build.txt",)
 # returns a list with the command arguments to execute.
 REQUIRE_ENVIRONMENT = "node"
 
+########################## DJANGO WEBPACK LOADER ##############################
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(STATIC_ROOT, 'webpack-stats.json')
+    }
+}
+
 ################################# CELERY ######################################
 
 # Message configuration
@@ -875,6 +884,7 @@ INSTALLED_APPS = (
     'pipeline',
     'static_replace',
     'require',
+    'webpack_loader',
 
     # Theming
     'openedx.core.djangoapps.theming',
