@@ -376,13 +376,13 @@ class CourseDateSummaryTest(SharedModuleStoreTestCase):
 
             # Change to another course
             self.setup_course_and_user(days_till_upgrade_deadline=1,
-                                    user_enrollment_mode=CourseMode.AUDIT,
-                                    create_user=False)
+                                       user_enrollment_mode=CourseMode.AUDIT,
+                                       create_user=False)
 
             # Banner should not be present in the newly created course
             self.check_upgrade_banner(include_url_parameter=False,
-                                    banner_expected=False,
-                                    expected_cookie_value=old_course_id)
+                                      banner_expected=False,
+                                      expected_cookie_value=old_course_id)
 
             # Unfortunately (according to django doc), it is not possible to test expiration of the cookie.
 
