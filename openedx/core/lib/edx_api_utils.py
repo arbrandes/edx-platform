@@ -61,7 +61,7 @@ def get_edx_api_data(api_config, resource, api, resource_id=None, querystring=No
         if resource_id is not None:
             results = response
         elif traverse_pagination:
-            results = _traverse_pagination(response, endpoint, querystring, no_data)
+            results = traverse_pagination(response, endpoint, querystring, no_data)
         else:
             results = response
     except:  # pylint: disable=bare-except
@@ -75,7 +75,7 @@ def get_edx_api_data(api_config, resource, api, resource_id=None, querystring=No
     return results
 
 
-def _traverse_pagination(response, endpoint, querystring, no_data):
+def traverse_pagination(response, endpoint, querystring, no_data):
     """Traverse a paginated API response.
 
     Extracts and concatenates "results" (list of dict) returned by DRF-powered APIs.
