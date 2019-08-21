@@ -105,3 +105,5 @@ if FEATURES['ENABLE_ENTERPRISE_INTEGRATION']:
 # ]
 # TEMPLATES[1]["DIRS"] = _make_mako_template_dirs
 # derive_settings(__name__)
+
+DEBUG = True
